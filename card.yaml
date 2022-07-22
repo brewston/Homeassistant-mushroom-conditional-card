@@ -1,0 +1,163 @@
+type: vertical-stack
+cards:
+  - type: custom:mushroom-title-card
+    title: >2
+                       {%- if now().hour < 12 -%}Morning
+                       {%- elif now().hour < 18 -%}Afternoon
+                       {%- else -%}Evening{%- endif -%}, {{user}}. 
+      Today will be {{
+      states('sensor.alpine_snowsports_farnborough_feels_like_temperature') }}
+      °C and {{ states('sensor.alpine_snowsports_farnborough_weather') }}.
+    alignment: center
+  - type: horizontal-stack
+    alignment: justify
+    cards:
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: conditional
+            conditions:
+              - entity: person.tim
+                state: home
+            chip:
+              type: entity
+              entity: person.tim
+              name: Tim
+              use_entity_picture: true
+              hide_state: true
+              hide_name: false
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: conditional
+            conditions:
+              - entity: person.emma
+                state: home
+            chip:
+              type: entity
+              entity: person.emma
+              name: Emma
+              use_entity_picture: true
+              hide_state: true
+              hide_name: false
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: conditional
+            conditions:
+              - entity: person.isobel
+                state: home
+            chip:
+              type: entity
+              entity: person.isobel
+              name: Isobel
+              use_entity_picture: true
+              hide_state: true
+              hide_name: false
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: conditional
+            conditions:
+              - entity: person.ellie
+                state: home
+            chip:
+              type: entity
+              entity: person.ellie
+              name: Ellie
+              use_entity_picture: true
+              hide_state: true
+              hide_name: false
+  - type: custom:mushroom-chips-card
+    chips:
+      - type: conditional
+        conditions:
+          - entity: binary_sensor.front_door
+            state: 'on'
+        chip:
+          type: template
+          picture: https://img.icons8.com/officel/16/000000/door-opened.png
+          content: Open
+      - type: conditional
+        conditions:
+          - entity: climate.hallway
+            state: 'on'
+        chip:
+          type: template
+          picture: https://img.icons8.com/color/48/000000/radiator.png
+          content: '{{ (states(''sensor.hallway_current_temperature'')) }} °C'
+      - type: alarm-control-panel
+        entity: alarm_control_panel.house_alarm
+      - type: conditional
+        conditions:
+          - entity: sensor.washing_machine_operation_state
+            state: Run
+        chip:
+          type: template
+          entity: sensor.washing_machine_duration
+          picture: /local/washing-machine.png
+          content: >-
+            {{ states('sensor.washing_machine_duration') | 
+            replace("unavailable", "Finished") }}
+      - type: conditional
+        conditions:
+          - entity: sensor.dishwasher_status
+            state: Running
+        chip:
+          type: template
+          picture: https://img.icons8.com/officel/2xl/dishwasher.png
+          content: Running
+      - type: conditional
+        conditions:
+          - entity: sensor.hot_tub_heater_action
+            state: 'On'
+        chip:
+          type: template
+          picture: https://img.icons8.com/officel/16/000000/jacuzzi.png
+      - type: conditional
+        conditions:
+          - entity: sensor.smartercoffee_state_3
+            state: brewing
+        chip:
+          type: template
+          picture: https://img.icons8.com/officel/2x/coffee-maker.png
+      - type: conditional
+        conditions:
+          - entity: media_player.samsung_tv
+            state: 'on'
+        chip:
+          type: template
+          picture: https://img.icons8.com/officel/16/000000/hdtv.png
+          content: '{{ state_attr(''media_player.samsung_tv'', ''source'') }}'
+      - type: conditional
+        conditions:
+          - entity: binary_sensor.laptop
+            state: 'on'
+        chip:
+          type: template
+          picture: https://img.icons8.com/color/48/000000/laptop--v1.png
+      - type: conditional
+        conditions:
+          - entity: sensor.hotwater_state
+            state: 'ON'
+        chip:
+          type: template
+          picture: >-
+            https://img.icons8.com/external-icongeek26-flat-icongeek26/64/000000/external-Boiler-plumber-icongeek26-flat-icongeek26.png
+    alignment: center
+  - type: custom:mushroom-chips-card
+    chips:
+      - type: template
+        content: >-
+          {{ (states('sensor.next_collection')) | replace("Food, Recycling",
+          "Recycling") | replace("Garden Waste, Refuse", "Refuse")  }}
+        picture: https://img.icons8.com/plasticine/100/000000/trash--v1.png
+      - type: template
+        picture: >-
+          https://www.logo.wine/a/logo/Oracle_Corporation/Oracle_Corporation-Logo.wine.svg
+        content: '{{ (states(''sensor.oracle'')) }}'
+    alignment: center
+card_mod:
+  style: |
+    ha-card {
+
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+    } 
