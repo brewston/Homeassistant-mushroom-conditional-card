@@ -148,9 +148,7 @@ cards:
   - type: custom:mushroom-chips-card
     chips:
       - type: template
-        content: >-
-          {{ (states('sensor.next_collection')) | replace("Food, Recycling",
-          "Recycling") | replace("Garden Waste, Refuse", "Refuse")  }}
+        content: {% if 'Recycling' in states('sensor.next_collection') %} Recycling {% else %} Rubbish {% endif %}
         picture: https://img.icons8.com/plasticine/100/000000/trash--v1.png
       - type: template
         picture: >-
