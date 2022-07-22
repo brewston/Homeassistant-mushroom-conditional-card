@@ -12,4 +12,4 @@ Screenshot 1 - I've removed the condition to just to display all the chips
 Screenshot 2 - More normal operation with most chips not visible.
 ![Screenshot_20220722-093342_Home Assistant](https://user-images.githubusercontent.com/6506987/180400283-da721309-d4c4-4986-8fde-0904788a30eb.jpg)
 
-This card was inspired by https://community.home-assistant.io/t/mushroom-cards-build-a-beautiful-dashboard-easily  - If you are reading this, cheers Dan !
+This card was inspired by https://community.home-assistant.io/t/welcome-scenes-card-mushroom/424409  - If you are reading this, cheers Dan !
