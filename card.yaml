@@ -1,3 +1,7 @@
+# The file isn't really called card.yaml - you take this code and paste into as a new card (selecting 'manual' card)
+# You need to have installed vertical and horizontal stacks from HACs and most of the sensors I use a specific to my HA.
+
+
 type: vertical-stack
 cards:
   - type: custom:mushroom-title-card
